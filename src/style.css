@@ -1,6 +1,125 @@
-body > div#kool-toasts * {
+body {
+  /* background-color: #111827;
+  color: #ffffff; */
+}
+
+#nice-toasts-container {
+  --backgound-colour-light: #ffffff;
+  --text-colour-light: #111827;
+  --shadow-colour-light: #11182733;
+
+  --backgound-colour-dark: #111827;
+  --text-colour-dark: #ffffff;
+  --shadow-colour-dark: #ffffff33;
+
+  --info-colour: #3b82f6;
+  --success-colour: #10b981;
+  --warning-colour: #f59e0b;
+  --error-colour: #ef4444;
+
+  position: fixed;
+  inset: 0;
+  z-index: 99999999999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  pointer-events: none;
+
+  --shadow-colour: var(--shadow-colour-light);
+}
+
+#nice-toasts-container[data-theme='light'] {
+  --backgound-colour: var(--backgound-colour-light);
+  --text-colour: var(--text-colour-light);
+  --shadow-colour: var(--shadow-colour-light);
+}
+
+#nice-toasts-container[data-theme='dark'] {
+  --backgound-colour: var(--backgound-colour-dark);
+  --text-colour: var(--text-colour-dark);
+  --shadow-colour: var(--shadow-colour-dark);
+}
+
+#nice-toast {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: inherit;
+
+  pointer-events: all;
+  width: 30vw;
+  aspect-ratio: 6/1;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  background-color: var(--backgound-colour);
+  color: var(--text-colour);
+  border: 0.125rem solid var(--current-colour);
+  box-shadow: 0px 0px 20px 2px var(--shadow-colour);
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  transform: translate(200%, -200%) scale(0);
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+#nice-toast::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.375rem;
+  width: 0.25rem;
+  height: calc(100% - 1rem);
+  border-radius: 111rem;
+  background-color: var(--current-colour);
+}
+
+#nice-toast.info {
+  --current-colour: var(--info-colour);
+}
+
+#nice-toast.success {
+  --current-colour: var(--success-colour);
+}
+
+#nice-toast.warning {
+  --current-colour: var(--warning-colour);
+}
+
+#nice-toast.error {
+  --current-colour: var(--error-colour);
+}
+
+#nice-toast > span#icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  background-color: var(--current-colour);
+  color: var(--backgound-colour);
+  border-radius: 50%;
+  text-align: center;
+}
+
+#nice-toast > span#message {
+  flex: 1;
+  font-weight: 500;
+}
+
+#nice-toast > span#close {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.75rem;
+  text-align: center;
+  border-radius: 0.25rem;
+  margin-left: auto;
+}
+
+#nice-toast > span#close:hover {
+  background-color: lightgrey;
 }
